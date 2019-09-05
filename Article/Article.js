@@ -128,6 +128,7 @@ const articles = document.querySelector('.articles')
 
 function createArticle(title, date, p1, p2, p3) {
 
+  //Elements
   const article = document.createElement('div');
   const articleTitle = document.createElement('h2');
   const articleDate = document.createElement('p');
@@ -149,17 +150,18 @@ function createArticle(title, date, p1, p2, p3) {
   articleDate.classList.add('date')
   expandButton.classList.add('expandButton')
 
+  //Text
   articleTitle.textContent = title;
   articleDate.textContent = date;
   articleContent1.textContent = p1;
   articleContent2.textContent = p2;
   articleContent3.textContent = p3;
-  expandButton.textContent = "Button"
+  expandButton.textContent = "Expand"
 
+  //Event Listener
   expandButton.addEventListener('click', function () {
     article.classList.toggle('article-open')
   })
-
   return article
 }
 
