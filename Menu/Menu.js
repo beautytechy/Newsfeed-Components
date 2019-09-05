@@ -34,33 +34,42 @@ let menuItems = [
   
 */
 
-menuItems.forEach(item => {
 
-  //Elements
-  const menu = document.createElement('div')
+function createMenu(menuItems) {
+  //Element
+  const menuContent = document.createElement('div')
   const menuList = document.createElement('ul')
-  const menuItem = document.createElement("li");
+  
 
   //Structure
-  menu.appendChild(menuList)
-  menuList.appendChild(menuItem)
+  menuContent.appendChild(menuList)
 
-  //Class Names
-  menu.classList.add('menu')
+
+  //Class Names/Styling
+  menuContent.classList.add('menu')
+
+  //Text
+ 
 
   //DOM Selector
-  const menuButton = document.querySelector( '.menu-button')
-  const header = document.querySelector('.header')
+  const menuButton = document.querySelector('.menu-button')
 
-  menuItem.addEventListener('click', function () {
-    menu.classList.toggle('menu--open');
+  menuItems.forEach(item => {
+    const menuItem = document.createElement("li");
+    menuList.appendChild(menuItem);
+    menuItem.textContent = item
+    menuList.appendChild(menuItem);
+    
+  });
+
+  //Event Listener
+  menuButton.addEventListener('click', function () {
+    console.log("button clicked");
+    menuContent.classList.toggle('menu--open');
   })
 
- 
-    console.log('creating menu')
+  return menuContent
+}
 
-    header.appendChild(menu);
-  
-    return menu
-})
-
+const header = document.querySelector('.header')
+header.appendChild(createMenu(menuItems));
