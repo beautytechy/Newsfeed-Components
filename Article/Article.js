@@ -85,7 +85,18 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Happy BeyDay',
+    date: 'Sept 4th, 2019',
+    firstParagraph: `Beyonce is smart, talented and hard-working. Many say she is the greatest living entertainer. `,
+
+    secondParagraph: `She is among an elite group of people that were born on the 4th of the month. This includes her husband Shawn Carter (December 4th), Barack Obama (August 4th), and Malea Obama (July 4th).`,
+
+    thirdParagraph: `Beyonce's most dedicated fans are referred to as "The Beyhive". Beyhive members celebrate QueenB daily by striving to match her work ethic, generosity of spirit, and ability to slay. `
   }
+
+
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
@@ -115,40 +126,46 @@ const data = [
 //New Elements
 const articles = document.querySelector('.articles')
 
-function createArticle(title, date, paragraph, paragraph, paragraph)
-{
-  const article = 
-  document.createElement('div');
+function createArticle(title, date, p1, p2, p3) {
 
-  const articleTitle =
-  document.createElement('h2');
-  
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
   const articleDate = document.createElement('p');
-
-  const articleContent = 
-  document.createElement('p');
+  const articleContent1 = document.createElement('p');
+  const articleContent2 = document.createElement('p');
+  const articleContent3 = document.createElement('p');
   const expandButton = document.createElement('span');
 
-//Structure
+  //Structure
   article.appendChild(articleTitle)
-
   article.appendChild(articleDate)
-
-  article.appendChild(articleContent)
-
+  article.appendChild(articleContent1)
+  article.appendChild(articleContent2)
+  article.appendChild(articleContent3)
   article.appendChild(expandButton)
 
   //Class Names
   article.classList.add('article')
-
   articleDate.classList.add('date')
-
   expandButton.classList.add('expandButton')
+
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  articleContent1.textContent = p1;
+  articleContent2.textContent = p2;
+  articleContent3.textContent = p3;
+  expandButton.textContent = "Button"
+
+  expandButton.addEventListener('click', function () {
+    article.classList.toggle('article-open')
+  })
 
   return article
 }
 
-data.forEach(data => {
-  console.log('creating panel', data.title)
-  articles.appendChild(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+data.forEach(item => {
+  console.log('creating article', item.title)
+  articles.appendChild(createArticle(item.title, item.date, item.firstParagraph, item.secondParagraph, item.thirdParagraph))
 })
+
+
